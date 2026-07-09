@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Undangan pernikahan online profesional">
+    <title>Dika &amp; Lisa - Undangan Pernikahan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <audio id="bg-music" loop>
+        <source src="kamulah-takdirku.mp3" type="audio/mpeg">
+    </audio>
+    <div class="loading-screen" id="loading">
+        <div class="loading-content">
+            <div class="loading-ring"></div>
+            <p>Memuat undangan...</p>
+        </div>
+    </div>
+
+    <div class="opening-overlay" id="opening" style="--bg-image: url('../foto/10.jpg');">
+        <div class="opening-content">
+            <span class="opening-label">Undangan Pernikahan</span>
+            <h1 class="opening-names">Dika &amp; Lisa</h1>
+            <div class="opening-divider">
+                <span></span>
+                <span class="opening-icon">&#9825;</span>
+                <span></span>
+            </div>
+            <p class="opening-to">Kepada Yth.</p>
+            <p class="opening-guest" id="guest-name-display">Bapak/Ibu/Saudara/i</p>
+            <p class="opening-invite">Kami mengundang Anda untuk menghadiri pernikahan kami</p>
+            <button class="btn btn-primary opening-btn" id="open-invitation">Buka Undangan</button>
+        </div>
+    </div>
+
+    <main class="site-main hidden" id="main-content">
+        <section class="hero bg-style-a" id="hero" style="--bg-image: url('../foto/4.jpg');">
+            <div class="hero-bokeh" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-label">The Wedding of</span>
+                <h1 class="hero-title">Dika &amp; Lisa</h1>
+                <p class="hero-date">Minggu, 2 Agustus 2026</p>
+                <p class="hero-venue">Pucangsawit, Jebres, Surakarta</p>
+                <a href="#event" class="btn btn-primary">Lihat Undangan</a>
+            </div>
+            <button class="music-toggle" id="music-toggle" aria-label="Putar/Pause Musik">
+                <svg id="music-icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <svg id="music-icon-off" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+            </button>
+            <div class="scroll-indicator">
+                <span></span>
+            </div>
+        </section>
+
+        <section class="couple section reveal bg-style-b" id="couple">
+            <div class="container">
+                <div class="couple-invitation-card">
+                    <img src="gemini-03.png" alt="" class="corner-decoration corner-tl" aria-hidden="true">
+                    <img src="gemini-06.png" alt="" class="corner-decoration corner-tr" aria-hidden="true">
+                    <img src="gemini-04.png" alt="" class="corner-decoration corner-bl" aria-hidden="true">
+                    <img src="gemini-07.png" alt="" class="corner-decoration corner-br" aria-hidden="true">
+
+                    <div class="section-header couple-header">
+                        <span class="section-label">Mempelai</span>
+                        <h2 class="section-title">Dua Hati, Satu Cinta</h2>
+                        <div class="title-divider"></div>
+                    </div>
+
+                    <div class="couple-grid">
+                        <div class="couple-card">
+                            <div class="couple-photo">
+                                <div class="photo-placeholder">D</div>
+                            </div>
+                            <h3>Dika Nofana</h3>
+                            <p class="couple-parent">Putra kedua dari Bapak Siman &amp; Ibu Mardiatun</p>
+                            <p class="couple-desc">Ngrancang 06/07 Plesungan, Gondangrejo, Karanganyar</p>
+                        </div>
+                        <div class="couple-divider">
+                            <span class="ampersand">&</span>
+                        </div>
+                        <div class="couple-card">
+                            <div class="couple-photo">
+                                <div class="photo-placeholder">L</div>
+                            </div>
+                            <h3>Lisa Rahmawati Rahayu</h3>
+                            <p class="couple-parent">Putri kedua dari Bapak Sri Yono &amp; Ibu Sri Rahayu</p>
+                            <p class="couple-desc">Pucangsawit 01/08, Jebres, Surakarta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="love-story section reveal bg-style-b" id="love-story">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Perjalanan Cinta</span>
+                    <h2 class="section-title">Love Story</h2>
+                </div>
+                <div class="love-story-timeline">
+                    <div class="love-story-line">
+                        <div class="love-story-progress"></div>
+                    </div>
+                    <div class="love-story-items">
+                        <div class="love-story-item">
+                            <div class="love-story-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <div class="love-story-content">
+                                <span class="love-story-year">2022</span>
+                                <h3>Pertemuan</h3>
+                                <p>Kami percaya setiap pertemuan adalah bagian dari takdir. Setelah perkenalan singkat melalui sosial media, kami memutuskan untuk bertemu secara langsung. Siapa sangka pertemuan sederhana itu menjadi awal dari cerita kisah cinta kami.</p>
+                            </div>
+                        </div>
+                        <div class="love-story-item">
+                            <div class="love-story-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </div>
+                            <div class="love-story-content">
+                                <span class="love-story-year">2023</span>
+                                <h3>Menjalin Hubungan</h3>
+                                <p>Allah rupanya punya rencana lain. Setelah melalui berbagai suka dan duka, kami belajar saling memahami, saling percaya, dan tumbuh bersama. Sejak saat itu semuanya terasa lebih berarti.</p>
+                            </div>
+                        </div>
+                        <div class="love-story-item">
+                            <div class="love-story-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <div class="love-story-content">
+                                <span class="love-story-year">2025</span>
+                                <h3>Lamaran</h3>
+                                <p>Setelah lama menjalin hubungan, atas izin Allah dan restu orang tua, niat baik kami akhirnya berlanjut pada sebuah acara lamaran yang penuh doa dan kebahagiaan.</p>
+                            </div>
+                        </div>
+                        <div class="love-story-item">
+                            <div class="love-story-icon" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="love-story-content">
+                                <span class="love-story-year">2026</span>
+                                <h3>Menikah</h3>
+                                <p>Akhirnya kami melangkah ke hari yang selama ini kami panjatkan dalam doa. Percayalah, bukan karena bertemu lalu berjodoh, melainkan karena kami berjodoh maka dipertemukan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quote section section-dark reveal bg-style-c" id="quote" style="--bg-image: url('../foto/bg-1.jpg');">
+            <div class="container">
+                <blockquote>
+                    <p>
+                        "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari
+                        jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
+                    </p>
+
+                    <cite>
+                        Q.S. Ar-Rum: 21
+                    </cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <section class="event section reveal bg-style-b" id="event">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Jadwal Acara</span>
+                    <h2 class="section-title">Save the Date</h2>
+                </div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+                <div class="event-grid">
+                    <div class="event-card">
+                        <div class="event-icon">AK</div>
+                        <h3>Akad Nikah</h3>
+                        <p class="event-time">07.00 WIB - Selesai</p>
+                        <p class="event-date">Minggu, 2 Agustus 2026</p>
+                        <p class="event-place">Pucangsawit</p>
+                        <p class="event-address">RT 01/RW 08, Jebres, Surakarta</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-icon">RE</div>
+                        <h3>Resepsi</h3>
+                        <p class="event-time">09.00 WIB - Selesai</p>
+                        <p class="event-date">Minggu, 2 Agustus 2026</p>
+                        <p class="event-place">Pucangsawit</p>
+                        <p class="event-address">RT 01/RW 08, Jebres, Surakarta</p>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <a href="#location" class="btn btn-outline">Lihat Lokasi</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="location section section-light reveal bg-style-b" id="location">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Lokasi</span>
+                    <h2 class="section-title">Menuju Venue</h2>
+                </div>
+                <div class="location-map">
+                    <a href="https://maps.app.goo.gl/Xstfii5q2XUktFJL6" target="_blank" rel="noopener noreferrer" class="location-map-link">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.0079999999998!2d110.842!3d-7.565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMzMnNTQuMCJTIDExMMKwNTAnMzEuMiJF!5e0!3m2!1sen!2sid!4v1600000000000!5m2!1sen!2sid"
+                            width="100%" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </a>
+                </div>
+                <div class="location-actions">
+                    <a href="https://maps.app.goo.gl/Xstfii5q2XUktFJL6" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-location">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Buka di Google Maps
+                    </a>
+                </div>
+                <div class="location-info">
+                    <p>Pucangsawit</p>
+                    <p>RT 01/RW 08, Jebres, Surakarta</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="gallery section reveal bg-style-b" id="gallery">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Galeri</span>
+                    <h2 class="section-title">Momen Bahagia</h2>
+                </div>
+                <div class="carousel">
+                    <div class="carousel-track" id="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="foto/1.jpg" alt="Momen Bahagia 1" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/2.jpg" alt="Momen Bahagia 2" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/3.jpg" alt="Momen Bahagia 3" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/4.jpg" alt="Momen Bahagia 4" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/5.jpg" alt="Momen Bahagia 5" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/6.jpg" alt="Momen Bahagia 6" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/7.jpg" alt="Momen Bahagia 7" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/8.jpg" alt="Momen Bahagia 8" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/9.jpg" alt="Momen Bahagia 9" class="carousel-image">
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="foto/10.jpg" alt="Momen Bahagia 10" class="carousel-image">
+                        </div>
+                    </div>
+                    <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Sebelumnya">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Selanjutnya">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    <div class="carousel-dots" id="carousel-dots"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="rsvp section section-dark reveal bg-style-a" id="rsvp" style="--bg-image: url('../foto/7.jpg');">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Reservasi</span>
+                    <h2 class="section-title">Konfirmasi Kehadiran</h2>
+                </div>
+                <p class="rsvp-note">Kehadiran dan doa restu Anda adalah anugerah yang sangat berarti bagi kami.</p>
+                <form class="rsvp-form" id="rsvp-form">
+                    <div class="form-group">
+                        <label for="guest-name">Nama</label>
+                        <input type="text" id="guest-name" name="name" required placeholder="Masukkan nama Anda">
+                    </div>
+                    <div class="form-group">
+                        <label for="guest-attendance">Kehadiran</label>
+                        <select id="guest-attendance" name="attendance" required>
+                            <option value="" disabled selected>Pilih kehadiran</option>
+                            <option value="hadir">Hadir</option>
+                            <option value="tidak-hadir">Tidak Hadir</option>
+                            <option value="belum-pasti">Belum Pasti</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guest-message">Ucapan</label>
+                        <textarea id="guest-message" name="message" rows="4"
+                            placeholder="Tulis ucapan dan doa untuk mempelai"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Kirim Konfirmasi</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="wishes section reveal bg-style-b" id="wishes">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">Ucapan</span>
+                    <h2 class="section-title">Doa dan Ucapan</h2>
+                </div>
+                <div class="wishes-list" id="wishes-list">
+                    <!-- Ucapan akan muncul di sini setelah tamu mengirim konfirmasi kehadiran -->
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer bg-style-b">
+            <div class="container">
+                <h2 class="footer-title">Dika &amp; Lisa</h2>
+                <p class="footer-date">2 Agustus 2026</p>
+                <p class="footer-thanks">Terima kasih atas doa dan kehadirannya.</p>
+                <p class="footer-credit">Dibuat dengan cinta untuk hari yang istimewa.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

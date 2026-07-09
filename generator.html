@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Link Undangan - Dika & Lisa</title>
+    <style>
+        :root {
+            --primary: #8b6f4e;
+            --primary-dark: #6d5332;
+            --bg: #f9f6f2;
+            --card: #ffffff;
+            --text: #3e3228;
+            --muted: #7d6b5d;
+            --border: #e5ddd3;
+            --success: #4a7c59;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 24px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        header h1 {
+            margin: 0 0 8px;
+            font-size: 1.75rem;
+            color: var(--primary-dark);
+        }
+
+        header p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        textarea, input, select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text);
+            background: #fff;
+        }
+
+        textarea { min-height: 160px; resize: vertical; }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: transform 0.1s, opacity 0.1s;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .btn-primary:hover { background: var(--primary-dark); }
+
+        .btn-secondary {
+            background: var(--bg);
+            color: var(--primary-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-small {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+            border-radius: 8px;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+
+        .tag:hover { background: #efe9e1; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: var(--bg);
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        td { word-break: break-word; }
+
+        .truncate {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--muted);
+        }
+
+        .hidden { display: none !important; }
+
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--primary-dark);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .guide h2 {
+            margin: 0 0 16px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        .guide ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .guide li {
+            margin-bottom: 10px;
+        }
+
+        .guide code {
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        .guide strong {
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 16px; }
+            .card { padding: 18px; }
+            table { font-size: 0.8rem; }
+            th, td { padding: 8px; }
+            .actions { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Generator Link Undangan</h1>
+            <p>Dika & Lisa — Buat link undangan dan link WhatsApp untuk setiap tamu</p>
+        </header>
+
+        <div class="card guide">
+            <h2>Panduan Penggunaan</h2>
+            <ol>
+                <li><strong>Download Template</strong> — klik tombol <em>Download Template</em> untuk mendapatkan file Excel.</li>
+                <li><strong>Isi Data</strong> — buka file Excel, isi kolom <strong>Nama</strong> (wajib) dan <strong>Nomor WA</strong> (opsional). Satu baris = satu tamu.</li>
+                <li><strong>Import Excel</strong> — klik input file <em>Choose File</em>, pilih file Excel/CSV yang sudah diisi. Data akan masuk otomatis.</li>
+                <li><strong>Edit Template Pesan</strong> — sesuaikan pesan WA di bagian bawah. Gunakan <code>[NAMA]</code> untuk nama tamu dan <code>[LINK]</code> untuk link undangan.</li>
+                <li><strong>Salin Template Pesan</strong> — klik tombol untuk menyalin template pesan saat ini.</li>
+                <li><strong>Generate Link</strong> — klik <em>Generate Link</em> untuk membuat link undangan dan pesan WA per tamu.</li>
+                <li><strong>Kirim WA</strong> — klik <em>Kirim WA</em> di setiap baris untuk langsung membuka WhatsApp.</li>
+                <li><strong>Salin Link / Salin WA</strong> — klik untuk menyalin link undangan atau link WA.</li>
+                <li><strong>Export CSV</strong> — klik <em>Export CSV</em> untuk mengunduh hasil generate dalam format CSV.</li>
+                <li><strong>Reset Data</strong> — klik jika ingin mengganti data import atau memulai dari awal. Sebisa mungkin lakukan import hanya 1x untuk menghindari duplikasi dari import sebelumnya.</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <div class="form-group hidden">
+                <label for="guestInput">Daftar Nama Tamu &amp; Nomor WhatsApp</label>
+                <textarea id="guestInput" placeholder="Contoh:&#10;Budi Santoso | 081234567890&#10;Ani Wijaya; 081298765432&#10;Dedi &amp; Rina, 081234567890"></textarea>
+                <div class="hint">Data ini diisi otomatis dari import Excel.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Import dari Excel</label>
+                <div class="actions">
+                    <input type="file" id="excelInput" accept=".xlsx,.xls,.csv" onchange="handleExcelImport(this)" style="width:auto; flex:1; min-width:200px;">
+                    <button class="btn btn-secondary btn-small" onclick="downloadTemplateXLSX()">Download Template</button>
+                    <button class="btn btn-secondary btn-small hidden" id="resetImportBtn" onclick="resetImport()">Reset Data</button>
+                </div>
+                <div class="hint" id="importStatus">Upload file Excel (.xlsx, .xls, .csv) dengan kolom Nama dan Nomor WA. Kosongkan nomor jika tidak ada.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="messageTemplate">Template Pesan WhatsApp</label>
+                <textarea id="messageTemplate">Assalamualaikum Wr. Wb.
+Kepada Yth. Bapak/Ibu/Saudara/i [NAMA],
+
+Tanpa mengurangi rasa hormat, izinkan kami mengundang Bapak/Ibu/Saudara/i [NAMA] untuk menghadiri acara pernikahan kami.
+
+Berikut link undangan kami:
+[LINK]
+
+Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
+
+Wassalamualaikum Wr. Wb.</textarea>
+                <div class="hint">Gunakan placeholder <strong>[NAMA]</strong> untuk nama tamu dan <strong>[LINK]</strong> untuk link undangan.</div>
+                <div class="tags">
+                    <span class="tag" onclick="insertTag('[NAMA]')">+ [NAMA]</span>
+                    <span class="tag" onclick="insertTag('[LINK]')">+ [LINK]</span>
+                </div>
+                <button class="btn btn-secondary btn-small" style="margin-top:10px;" onclick="copyTemplateMessage()">Salin Template Pesan</button>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-primary" onclick="generate()">Generate Link</button>
+                <button class="btn btn-secondary" onclick="resetTemplate()">Reset Template</button>
+            </div>
+        </div>
+
+        <div class="card hidden" id="resultCard">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+                <h2 style="margin:0; font-size:1.2rem;">Hasil</h2>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn btn-success btn-small" onclick="exportCSV()">Export CSV</button>
+                </div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table id="resultTable">
+                    <thead>
+                        <tr>
+                            <th style="width:30px;">No</th>
+                            <th>Nama Tamu</th>
+                            <th>Link Undangan</th>
+                            <th>Nomor WA</th>
+                            <th>Pesan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Disalin ke clipboard</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script>
+        const defaultTemplate = `Assalamualaikum Wr. Wb.
+Kepada Yth. Bapak/Ibu/Saudara/i [NAMA],\n
+Tanpa mengurangi rasa hormat, izinkan kami mengundang Bapak/Ibu/Saudara/i [NAMA] untuk menghadiri acara pernikahan kami.
+
+Berikut link undangan kami:
+[LINK]
+
+Atas kehadiran dan doa restunya, kami ucapkan terima kasih.
+
+Wassalamualaikum Wr. Wb.`;
+
+        const baseUrl = 'https://undangan-lisa-dan-dika.vercel.app/';
+
+        function normalizePhone(phone) {
+            if (!phone) return '';
+            let cleaned = phone.replace(/\D/g, '');
+            if (cleaned.startsWith('0')) {
+                cleaned = '62' + cleaned.slice(1);
+            }
+            if (cleaned.startsWith('8') && cleaned.length >= 10) {
+                cleaned = '62' + cleaned;
+            }
+            return cleaned;
+        }
+
+        function buildInvitationLink(name) {
+            return baseUrl + '?to=' + encodeURIComponent(name).replace(/%20/g, '+');
+        }
+
+        function buildWhatsAppLink(phone, message) {
+            const normalized = normalizePhone(phone);
+            if (!normalized) return '';
+            return 'https://wa.me/' + normalized + '?text=' + encodeURIComponent(message);
+        }
+
+        function generateMessage(template, name, link) {
+            return template.replace(/\[NAMA\]/g, name).replace(/\[LINK\]/g, link);
+        }
+
+        function insertTag(tag) {
+            const textarea = document.getElementById('messageTemplate');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            textarea.value = textarea.value.substring(0, start) + tag + textarea.value.substring(end);
+            textarea.focus();
+            textarea.selectionStart = textarea.selectionEnd = start + tag.length;
+        }
+
+        function resetTemplate() {
+            document.getElementById('messageTemplate').value = defaultTemplate;
+        }
+
+        function copyTemplateMessage() {
+            const template = document.getElementById('messageTemplate').value;
+            copyText(template);
+            showToast('Template pesan disalin');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => showToast('Disalin ke clipboard'));
+        }
+
+        let generatedRows = [];
+        let hasImported = false;
+
+        function parseGuestLine(line) {
+            let separator = '|';
+            if (!line.includes('|')) {
+                separator = line.includes(';') ? ';' : ',';
+            }
+            const parts = line.split(separator).map(p => p.trim());
+            const name = parts[0];
+            if (!name) return null;
+            const phone = parts.length > 1 ? parts.slice(1).join(separator).trim() : '';
+            return { name, phone };
+        }
+
+        function generate() {
+            const rawInput = document.getElementById('guestInput').value;
+            const template = document.getElementById('messageTemplate').value;
+
+            const lines = rawInput.split('\n')
+                .map(n => n.trim())
+                .filter(n => n.length > 0);
+
+            if (lines.length === 0) {
+                alert('Masukkan minimal satu nama tamu.');
+                return;
+            }
+
+            const guests = [];
+            const errors = [];
+
+            for (let i = 0; i < lines.length; i++) {
+                const parsed = parseGuestLine(lines[i]);
+                if (!parsed) {
+                    errors.push(`Baris ${i + 1}: "${lines[i]}" tidak valid. Masukkan setidaknya nama tamu.`);
+                    continue;
+                }
+
+                const normalized = normalizePhone(parsed.phone);
+                if (parsed.phone && !normalized) {
+                    errors.push(`Baris ${i + 1}: nomor WA "${parsed.phone}" tidak valid.`);
+                } else {
+                    guests.push({ name: parsed.name, phone: normalized });
+                }
+            }
+
+            if (errors.length > 0) {
+                alert('Terdapat kesalahan:\n\n' + errors.join('\n'));
+                return;
+            }
+
+            generatedRows = guests.map((guest, index) => {
+                const link = buildInvitationLink(guest.name);
+                const message = generateMessage(template, guest.name, link);
+                const waLink = guest.phone ? 'https://wa.me/' + guest.phone + '?text=' + encodeURIComponent(message) : '';
+                return { no: index + 1, name: guest.name, link, phone: guest.phone, message, waLink };
+            });
+
+            renderTable();
+            document.getElementById('resultCard').classList.remove('hidden');
+        }
+
+        function renderTable() {
+            const tbody = document.querySelector('#resultTable tbody');
+            tbody.innerHTML = generatedRows.map(row => {
+                const waActions = row.waLink ? `
+                    <button class="btn btn-secondary btn-small" onclick="copyMessage(${row.no - 1})">Salin WA</button>
+                    <a class="btn btn-success btn-small" href="${row.waLink}" target="_blank">Kirim WA</a>
+                ` : '';
+                return `
+                <tr>
+                    <td>${row.no}</td>
+                    <td>${escapeHtml(row.name)}</td>
+                    <td><a href="${row.link}" target="_blank" class="truncate">${row.link}</a></td>
+                    <td>${row.phone ? '+' + row.phone : '-'}</td>
+                    <td>${escapeHtml(row.message).replace(/\n/g, '<br>')}</td>
+                    <td>
+                        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary btn-small" onclick="copyText('${row.link}')">Salin Link</button>
+                            ${waActions}
+                        </div>
+                    </td>
+                </tr>
+            `;
+            }).join('');
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function copyMessage(index) {
+            const message = generatedRows[index].message;
+            copyText(message);
+            showToast('Pesan WA disalin');
+        }
+
+        function exportCSV() {
+            const header = ['No', 'Nama Tamu', 'Link Undangan', 'Nomor WA', 'Pesan WhatsApp', 'Link WhatsApp'];
+            const rows = generatedRows.map(r => [
+                r.no,
+                r.name,
+                r.link,
+                r.phone ? '+' + r.phone : '',
+                r.message,
+                r.waLink
+            ]);
+
+            const csvContent = [header, ...rows]
+                .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+                .join('\n');
+
+            const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'daftar-tamu-undangan.csv';
+            link.click();
+            URL.revokeObjectURL(link.href);
+        }
+
+        function downloadTemplateXLSX() {
+            const wb = XLSX.utils.book_new();
+            const ws = XLSX.utils.aoa_to_sheet([['Nama', 'Nomor WA']]);
+            XLSX.utils.book_append_sheet(wb, ws, 'Daftar Tamu');
+            XLSX.writeFile(wb, 'template-daftar-tamu.xlsx');
+        }
+
+        function findColumnIndex(headers, candidates) {
+            const normalized = headers.map(h => String(h).toLowerCase().replace(/[^a-z0-9]/g, ''));
+            for (const candidate of candidates) {
+                const idx = normalized.indexOf(candidate.toLowerCase().replace(/[^a-z0-9]/g, ''));
+                if (idx !== -1) return idx;
+            }
+            return -1;
+        }
+
+        function handleExcelImport(input) {
+            if (hasImported) {
+                alert('Anda sudah mengimport data. Klik Reset Data jika ingin mengimport ulang.');
+                input.value = '';
+                return;
+            }
+
+            const file = input.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+                    if (rows.length === 0) {
+                        alert('File Excel kosong atau tidak memiliki data.');
+                        return;
+                    }
+
+                    const headers = rows[0].map(h => String(h || '').trim());
+                    let nameIdx = findColumnIndex(headers, ['nama', 'nama tamu', 'name']);
+                    let phoneIdx = findColumnIndex(headers, ['nomor wa', 'no wa', 'no hp', 'nomor hp', 'nomor', 'phone', 'wa', 'whatsapp']);
+
+                    let startRow = 1;
+                    if (nameIdx === -1 && phoneIdx === -1) {
+                        startRow = 0;
+                        nameIdx = 0;
+                        phoneIdx = 1;
+                    }
+                    if (nameIdx === -1) nameIdx = 0;
+                    if (phoneIdx === -1) phoneIdx = 1;
+
+                    const seen = new Set();
+                    const imported = [];
+                    for (let i = startRow; i < rows.length; i++) {
+                        const row = rows[i];
+                        const name = row[nameIdx] !== undefined ? String(row[nameIdx]).trim() : '';
+                        const phone = row[phoneIdx] !== undefined ? String(row[phoneIdx]).trim() : '';
+                        if (!name) continue;
+
+                        const key = `${name.toLowerCase()}|${phone.toLowerCase()}`;
+                        if (seen.has(key)) continue;
+                        seen.add(key);
+
+                        imported.push(phone ? `${name} | ${phone}` : name);
+                    }
+
+                    if (imported.length === 0) {
+                        alert('Tidak ada data tamu yang bisa diimport. Pastikan kolom Nama terisi.');
+                        return;
+                    }
+
+                    const textarea = document.getElementById('guestInput');
+                    textarea.value = imported.join('\n');
+
+                    hasImported = true;
+                    input.disabled = true;
+                    document.getElementById('resetImportBtn').classList.remove('hidden');
+                    document.getElementById('importStatus').textContent = `${imported.length} tamu berhasil diimport. Klik Reset Data untuk mengimport ulang.`;
+                    showToast(`Berhasil import ${imported.length} tamu dari Excel`);
+                } catch (err) {
+                    alert('Gagal membaca file Excel: ' + err.message);
+                }
+            };
+            reader.readAsArrayBuffer(file);
+            input.value = '';
+        }
+
+        function resetImport() {
+            document.getElementById('guestInput').value = '';
+            const excelInput = document.getElementById('excelInput');
+            excelInput.disabled = false;
+            excelInput.value = '';
+            document.getElementById('resetImportBtn').classList.add('hidden');
+            document.getElementById('importStatus').textContent = 'Upload file Excel (.xlsx, .xls, .csv) dengan kolom Nama dan Nomor WA. Kosongkan nomor jika tidak ada.';
+            hasImported = false;
+
+            generatedRows = [];
+            const tbody = document.querySelector('#resultTable tbody');
+            if (tbody) tbody.innerHTML = '';
+            document.getElementById('resultCard').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
