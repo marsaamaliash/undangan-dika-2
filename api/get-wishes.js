@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTsvdFgHtwmxqZ4JZ-v_XWmG9UOjWnyiBC2XXDuieQh8rc6qvN5AqmjI54NPONGootzg/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxV6nu0fGSxQjoHOAFhjlDamQ0XDhwzaM6_isGYHZWgZBETmyoTLJ0a9L3TGVqxhSWN/exec';
 
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method Not Allowed' });
